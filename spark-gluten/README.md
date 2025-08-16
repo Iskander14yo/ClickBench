@@ -1,4 +1,4 @@
-This README includes info on configuring Apache Gluten for ClickBench. For additional details, please refer to [Gluten docs](https://gluten.apache.org/docs/), [spark-accelerators README](../spark/README-accelerators.md) and Gluten release notes.
+This README includes info on configuring Apache Gluten for ClickBench. For additional details, please refer to [Gluten docs](https://gluten.apache.org) and [spark-accelerators README](../spark/README-accelerators.md).
 
 ### Run
 
@@ -12,9 +12,10 @@ As usual, benchmark can be run via `./benchmark.sh`. Additionally, users can pro
     ... messages indicating Gluten plugin usage/fallbacks ...
 ```
 - Check [downloads](https://gluten.apache.org/downloads/) for prebuilt jars and Spark compatibility.
-- Check [configuration](https://gluten.apache.org/docs/configuration/) for _basic Gluten configuration_.
+- Check [configuration](https://gluten.apache.org/#3-how-to-use) for _basic Gluten configuration_.
 
 ### Configuration
+- [Docs](https://gluten.apache.org/#3-how-to-use) recommend building Gluten instead of using pre-compiled JAR but this may lead to OOM. That is especially relevant for small machines therefore pre-compiled JAR is used.
 - Gluten requires a __dedicated off-heap memory pool__. We split available memory between heap (for Spark) and off-heap (for Gluten). The scripts allocate ~70% of available RAM to Spark and then split it 50/50 between heap and off-heap, similar to TPC-* guidance.
 - Key settings applied in `query.py` builder:
   - `spark.plugins=org.apache.gluten.GlutenPlugin`

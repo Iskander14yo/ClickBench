@@ -4,8 +4,8 @@
 Note: Keep in sync with spark-*/query.py (see README-accelerators.md for details)
 
 Current differences:
- - memory is split between heap (for Spark) and off-heap (for Gluten)
- - Gluten configuration is added to `SparkSession`
+- memory is split between heap (for Spark) and off-heap (for Gluten)
+- Gluten configuration is added to `SparkSession`
 - debug mode is added
 """
 
@@ -43,7 +43,6 @@ builder = (
     .config("spark.driver.extraClassPath", "gluten.jar")
     .config("spark.executor.extraClassPath", "gluten.jar")
     .config("spark.plugins", "org.apache.gluten.GlutenPlugin")
-    .config("spark.gluten.sql.columnar.backend.lib", "velox")
     .config("spark.shuffle.manager", "org.apache.spark.shuffle.sort.ColumnarShuffleManager")
     .config("spark.memory.offHeap.enabled", "true")
     .config("spark.memory.offHeap.size", f"{off_heap}g")

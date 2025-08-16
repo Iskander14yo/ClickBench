@@ -2,7 +2,7 @@
 
 # Note: Keep in sync with spark-*/benchmark.sh (see README-accelerators.md for details)
 #
-# Current differences:
+# Highlights:
 # - pyspark==3.5.x version is used (compatible with Gluten 1.2.x)
 # - Gluten installation is added
 # - auto-save results
@@ -26,10 +26,12 @@ wget --continue --progress=dot:giga 'https://datasets.clickhouse.com/hits_compat
 # Install Gluten
 
 # Note: Pick a jar matching your Spark/Scala/OS. Default below targets Spark 3.5 (Scala 2.12) on Ubuntu 20.04 x86_64.
-# See: https://gluten.apache.org/downloads/
-GLUTEN_JAR_URL=${GLUTEN_JAR_URL:-'https://downloads.apache.org/incubator/gluten/1.2.0/gluten-velox-bundle-spark3.5_2.12-ubuntu_20.04_x86_64-1.2.0.jar'}
+# See: https://apache.github.io/incubator-gluten/release.html
+GLUTEN_JAR_URL=${GLUTEN_JAR_URL:-'https://github.com/apache/incubator-gluten/releases/download/v1.4.0/apache-gluten-1.4.0-incubating-bin-spark35.tar.gz'}
 
-wget --continue --progress=dot:giga "$GLUTEN_JAR_URL" -O gluten.jar
+wget --continue --progress=dot:giga "$GLUTEN_JAR_URL" -O gluten.gz
+tar -xzf gluten.gz
+mv gluten-velox-bundle-spark3.5_2.12-linux_amd64-1.4.0.jar gluten.jar
 
 # Run the queries
 
